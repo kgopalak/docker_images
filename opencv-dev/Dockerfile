@@ -3,7 +3,7 @@
 # 1) Install docker (http://docker.io)
 # 2) Build: wget https://raw.github.com/dotcloud/docker/v0.1.6/contrib/docker-build/docker-build && python docker-build $USER/node-opencv < Dockerfile
 # 3) Test: docker run $USER/node-opencv node -e "console.log(require('opencv').version)"
-#
+# 
 # VERSION		0.3
 # DOCKER-VERSION	8.1.2
 
