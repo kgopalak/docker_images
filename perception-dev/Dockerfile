@@ -65,7 +65,7 @@ RUN wget http://downloads.sourceforge.net/project/boost/boost/${boost_version}/$
 RUN tar -xf ${boost_dir}.tar.gz
 WORKDIR ${boost_dir}
 RUN /vendor_build/boost/${boost_version}/${boost_dir}/bootstrap.sh \
-    && ./b2 --prefix=/usr/local -j 8 link=shared threading=multi address-model=64 variant=release,debug runtime-link=shared install \
+    && ./b2 --prefix=/usr/local -j 8 link=shared threading=multi address-model=64 variant=release runtime-link=shared install \
     && ldconfig
 
 RUN rm -rf sublime-text_build-3126_amd64.deb 
