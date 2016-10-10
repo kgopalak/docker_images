@@ -1,9 +1,9 @@
 # This is ubuntu-dev-base image
 
-# This file describes how to build compvision-dev into a runnable linux container with all dependencies installed
-
+# This file describes how to build into a runnable linux container with all dependencies installed
 # Build: wget https://raw.github.com/dotcloud/docker/v0.1.6/contrib/docker-build/docker-build && python docker-build $USER/kg-dev-base < Dockerfile
 # Test: docker run $USER/kg-dev-base node -e "console.log(require('opencv').version)" 
+
 FROM ubuntu:16.04
 
 MAINTAINER krishna.gopalakrishnan@gmail.com
@@ -36,9 +36,12 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update &&\
 	libdc1394-22-dev \
 	libjpeg-dev \
 	libpng12-dev \
+	libpng-dev \
+	libtiff5-dev \
 	libtiff5-dev \
 	libjasper-dev \
-	libtbb2 \ 
+	libtbb2 \
+	libtbb-dev \ 
 	libavcodec-dev \
 	libavformat-dev \
 	libswscale-dev \
@@ -51,6 +54,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update &&\
 	libfaac-dev \
 	libmp3lame-dev \
 	libdc1394-22-dev \
+	libgtk-3-dev \
+	libgstreamer1.0-dev \
+	libgstreamer-plugins-base1.0-dev \
+	libv4l-dev \
 	libopencore-amrnb-dev \
 	libopencore-amrwb-dev \
 	libtheora-dev \
@@ -58,8 +65,19 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update &&\
 	libxvidcore-dev \
 	x264 \
 	v4l-utils \
+	terminator \
 	wget \
 	unzip \
+	libbz2-dev \
+    libprotobuf-dev \
+	doxygen \
+	graphviz \
+	libeigen3-dev \
+	doxygen \
+	ffmpeg \
+	qtbase5-dev \
+	libhdf5-dev \
+	terminator \
 	&& rm -rf /var/lib/apt/lists/*
 
 #JDK

@@ -1,46 +1,6 @@
-FROM kgopalak/ubuntu-dev-base:1.0
+FROM kgopalak/ubuntu-dev-base:latest
 
 MAINTAINER krishna.gopalakrishnan@gmail.com
-
-# Prerequisites for Opencv
-RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update &&\
- 		apt-get -y install \
-		libgtk2.0-dev \
-		 libavcodec-dev \
-		 libavformat-dev \
-		 libswscale-dev \
-		 libxine2-dev \
-		 libtbb2 \
-		 libtbb-dev \
-		 libjpeg-dev \
-		 libpng-dev \
-		 libtiff-dev \
-		 libtiff5-dev \
-		 libjasper-dev \
-		 libdc1394-22-dev \
-		 libprotobuf-dev \
-		 doxygen \
-		 graphviz \
-		 libeigen3-dev \
-		 doxygen \
-		 ffmpeg \
-		 libgtk-3-dev \
-		 libgstreamer1.0-dev \
-		 libgstreamer-plugins-base1.0-dev \
-		 libv4l-dev \
-		 qtbase5-dev \
-		 libfaac-dev \
-		 libmp3lame-dev \
-		 libopencore-amrnb-dev \
-		 libopencore-amrwb-dev \
-		 libtheora-dev \
-		 libvorbis-dev \
-		 libxvidcore-dev \
-		 x264 \
-		 v4l-utils \
-		 libbz2-dev \
-		 libhdf5-dev \
-		 && rm -rf /var/lib/apt/lists/*
 
 # Get and build OpenCV 3.1
 WORKDIR /root/vendor_build/opencv/3.1.0
@@ -68,7 +28,9 @@ RUN /vendor_build/boost/${boost_version}/${boost_dir}/bootstrap.sh \
     && ./b2 --prefix=/usr/local -j 8 link=shared threading=multi address-model=64 variant=release runtime-link=shared install \
     && ldconfig
 
-RUN rm -rf sublime-text_build-3126_amd64.deb 
-RUN rm -rf Anaconda2-4.2.0-Linux-x86_64.sh
+RUN rm -rf /sublime-text_build-3126_amd64.deb 
+RUN rm -rf /Anaconda2-4.2.0-Linux-x86_64.sh
 RUN rm -rf /vendor_build
 RUN rm -rf /root/vendor_build
+
+RUN bash
