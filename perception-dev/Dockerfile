@@ -28,9 +28,21 @@ RUN /vendor_build/boost/${boost_version}/${boost_dir}/bootstrap.sh \
     && ./b2 --prefix=/usr/local -j 8 link=shared threading=multi address-model=64 variant=release runtime-link=shared install \
     && ldconfig
 
+RUN wget https://az764295.vo.msecnd.net/stable/9e4e44c19e393803e2b05fe2323cf4ed7e36880e/code_1.6.1-1476373175_amd64.deb
+RUN dpkg -i code_1.6.1-1476373175_amd64.deb
+
 RUN rm -rf /sublime-text_build-3126_amd64.deb 
 RUN rm -rf /Anaconda2-4.2.0-Linux-x86_64.sh
 RUN rm -rf /vendor_build
 RUN rm -rf /root/vendor_build
 
+# Install Catkin from http://catkin-tools.readthedocs.io/en/latest/installing.html
+RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main" > /etc/apt/sources.list.d/ros-latest.list'
+RUN wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
+RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update &&\
+ 					apt-get -y install \
+ 					python-catkin-tools \
+ 					&& rm -rf /var/lib/apt/lists/*
+
+WORKDIR /root
 RUN bash
